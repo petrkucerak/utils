@@ -31,7 +31,12 @@ def draw_ticket(c, ticket_data, x, y):
 
     c.setFont("Helvetica", 11)
     y -= 15
-    c.drawString(x, y, f"Passenger Name: {ticket_data['passenger_name']}")
+    c.drawString(x, y, f"Passenger Name: ")
+    c.setFont("Helvetica-Bold", 13)
+    x += 93
+    c.drawString(x, y, f"{ticket_data['passenger_name']}")
+    c.setFont("Helvetica", 11)
+    x -= 93
 
     y -= 15
     c.drawString(x, y, f"Flight Number: {ticket_data['flight_number']}")
@@ -79,7 +84,7 @@ def generate_tickets_data(path):
             gate = get_gate_num()
             random = get_qr_data()
             tickets.append({
-                "passenger_name": unidecode(name.replace("\n", "")),
+                "passenger_name": unidecode(name.replace("\n", "")).upper(),
                 "flight_number": "KF927",
                 "departure": "Jedlová (JFR)",
                 "destination": "Ulambatar (UBN)",
