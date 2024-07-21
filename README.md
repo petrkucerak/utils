@@ -1,6 +1,6 @@
-# Super Tramp Supported files
+# Super Camps Supported files
 
-Repozitář se skripty, které generují podpůrné soubory na dětský tábor SuperTramp.
+Repozitář se skripty, které generují podpůrné soubory na dětský tábor SuperTramp, Hudebák, příměšťák, ...
 
 ## Skripty
 
