@@ -34,7 +34,7 @@ styles = getSampleStyleSheet()
 title_style = ParagraphStyle(name='Title', fontName='RobotoBold', fontSize=30, leading=40)
 text_style = ParagraphStyle(name='Normal', fontName='Roboto', fontSize=18, leading=26)
 instruction_style = ParagraphStyle(name='Instruction', fontName='RobotoMedium', fontSize=18, leading=27)
-options_style = ParagraphStyle(name='Normal', fontName='Roboto', fontSize=18, leading=27)
+options_style = ParagraphStyle(name='Normal', fontName='Roboto', fontSize=18, leading=24)
 
 # Function to draw a card on a PDF page
 def draw_card(c, card, page_width, page_height):
@@ -45,7 +45,7 @@ def draw_card(c, card, page_width, page_height):
         return y - h
 
     title = f"{card.get('Číslo', '')}. {card.get('Název kartičky', '')}"
-    y = page_height - 100
+    y = page_height - 50
     y = draw_paragraph(title, 50, y, page_width - 100, title_style)
     y -= 20
 
@@ -56,8 +56,8 @@ def draw_card(c, card, page_width, page_height):
 
     for i in ['A', 'B', 'C', 'D', 'E', 'F']:
         if card.get(f'Možnost {i}'):
-            y = draw_paragraph(f"{i}) {card.get(f'Možnost {i}', '')} [{card.get(f'Číslo {i}', '')}]", 50, y, page_width - 100, options_style)
-            y -= 20
+            y = draw_paragraph(f"{i}) {card.get(f'Možnost {i}', '')} -> {card.get(f'Číslo {i}', '')}", 50, y, page_width - 100, options_style)
+            y -= 10
 
 # Create PDF
 c = canvas.Canvas(output_file, pagesize=A5)

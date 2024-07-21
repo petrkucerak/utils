@@ -1,8 +1,8 @@
-Číslo	Název kartičky	Text	Instrukce	Možnost A	Číslo A	Možnost B	Číslo B	Možnost C	Číslo C	Možnost D	Číslo D	Možnost E	Číslo E	Monost F	Číslo F
+Číslo	Název kartičky	Text	Instrukce	Možnost A	Číslo A	Možnost B	Číslo B	Možnost C	Číslo C	Možnost D	Číslo D	Možnost E	Číslo E	Možnost F	Číslo F
 1	Porodnice	Narodil ses...	Hod' kostkou	...jako otrok (1,2,3)	2	...jako boháč (4)	30	...jako voják (5,6)	47						
 2	Jsi otrok	Byl jsi určen k...	Hod' kostkou	...hledání dřeva (1,4)	3	...dolování kamene (2,5)	5	...jdeš do bohatého domu (3,6)	7						
 3	Lod'	Jsi na lodi na cestě do pralesa. Ale lodní doprava chvíli trvá.		Počkej 2 minuty	4										
-4	Prales	Jsi v pralese, co teď?	Tvůj osud ovlivní hod kostkou.	Úspěšně získáš dřevo, jedeš zpátky. (1)	18	Potkáváš tygra a musíš se rozhodnout, jakým způsobem se budeš snažit ochránit. (2)	21	Narazíš na truhlu zlata. (3)	29	Do stromu, pod kterým se nacházíš udeřil blesk, strom na tebe spadl a zabil tě. (4)	1	Potkáváš domorodce, zajmeš je a prodáš do otroctví. (5)	28	Potkáváš domorodce, kteří tě zajmou.	34
+4	Prales	Jsi v pralese, co teď? Tvůj osud ovlivní hod kostkou.		Úspěšně získáš dřevo, jedeš zpátky. (1)	18	Potkáváš tygra a musíš se rozhodnout, jakým způsobem se budeš snažit ochránit. (2)	21	Narazíš na truhlu zlata. (3)	29	Do stromu, pod kterým se nacházíš udeřil blesk, strom na tebe spadl a zabil tě. (4)	1	Potkáváš domorodce, zajmeš je a prodáš do otroctví. (5)	28	Potkáváš domorodce, kteří tě zajmou.	34
 5	Práce v dole	Jsi v dole a musíš pracovat.		Udělej 5 dřepů	6										
 6	Zával	Došlo k závalu kamene.		Umřel si	1										
 7	Otrok v bohatém domě	Pán tě pověřil přípravou jídla pro jeho dceru. Co ukuchtíš?		Smažák	8	Nepečený chléb	9								
