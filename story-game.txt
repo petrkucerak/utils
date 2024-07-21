@@ -2,4 +2,71 @@
 1	Porodnice	Narodil ses...	Hod' kostkou	...jako otrok (1,2,3)	2	...jako boháč (4)	30	...jako voják (5,6)	47						
 2	Jsi otrok	Byl jsi určen k...	Hod' kostkou	...hledání dřeva (1,4)	3	...dolování kamene (2,5)	5	...jdeš do bohatého domu (3,6)	7						
 3	Lod'	Jsi na lodi na cestě do pralesa. Ale lodní doprava chvíli trvá.		Počkej 2 minuty	4										
-4	Prales	Na lodi ses dostal do pralesa, co teď?	Tvůj osud ovlivní hod kostkou.	Úspěšně získáš dřevo, jedeš zpátky. (1)	18	Potkáváš tygra a musíš se rozhodnout, jakým způsobem se budeš snažit ochránit.									
+4	Prales	Jsi v pralese, co teď?	Tvůj osud ovlivní hod kostkou.	Úspěšně získáš dřevo, jedeš zpátky. (1)	18	Potkáváš tygra a musíš se rozhodnout, jakým způsobem se budeš snažit ochránit. (2)	21	Narazíš na truhlu zlata. (3)	29	Do stromu, pod kterým se nacházíš udeřil blesk, strom na tebe spadl a zabil tě. (4)	1	Potkáváš domorodce, zajmeš je a prodáš do otroctví. (5)	28	Potkáváš domorodce, kteří tě zajmou.	34
+5	Práce v dole	Jsi v dole a musíš pracovat.		Udělej 5 dřepů	6										
+6	Zával	Došlo k závalu kamene.		Umřel si	1										
+7	Otrok v bohatém domě	Pán tě pověřil přípravou jídla pro jeho dceru. Co ukuchtíš?		Smažák	8	Nepečený chléb	9								
+8	Smažák	Smažák není místní jídlo a nikomu nechutná.		Za trest si vyhoštěn na poušť	10										
+9	Kráska v bohatém domě	Po večeři ti dcera poděkuje s hezkýcm úsměvem, ty reaguješ...		Nijak	12	tím že ji začneš stalkovat	13	tím že s ní utečeš	11						
+10	Cestování pouští	Pří tvé cestě ti došla voda		Umřel si	1										
+11	Špatná volba	Zabijí tě		Jdi se znova narodit.	1										
+12	Tvůj pán je zraněn	Co uděláš?		Postaráš se o něho.	14	Pomstíš ho.	15	Neěnuješ mu pozornost.	11						
+13	Stalking	Po chvíli stalkování...		...jsi se rozhodl s ní stejně utéct.	11										
+14	Jak se o pána postaráš?	Rozhodl ses postarat o pána tak že...		Jdeš pro lékaře	16	Jdeš za šarlatánem	17								
+15	Výborně	Prokázal jsi odvahu a loajalitu.		Povýšil jsi na vojáka.	47										
+16	Lékař 1	Lekáři jsou těchto částích drazí, co s tím provedeš?		Přivydělám si na něj (10 dřepů)	19	Raději pudeš pro šarlatána									
+17	Šarlatán	Ani šarlatán není úplně zadarmo		Zaplať za něj (5 dřepů)	25	Nechce se ti platit	23								
+18	Zácpa	Bohůžel jste v Suezském průplavu narazili na zácpu		Počkej 1 a půl minuty	20										
+19	Léčení od lékaře	Sehnal jsi lékaře, čímž jsi zachránil pána. Pán ovšem není z lékaře zrovna nadšen. Poděkuje ti a posílá tě pryč.			2										
+20	Návrat	Povedlo se ti vrátit se dřevem. Co uděláš?		Půjdeš vyjednávat na černý trh.	38	Odevzdáš ho vládě.	42								
+21	Tygr	Potkal jsi tygra.		Půjdeš bojovat.	22	Utečeš	4								
+22	Bojuješ	Čím?		Šípem a luky	24	Mečem	26	Holýma rukama	27						
+23	Pán zemřel	Všichni jsou na tebe naštvaní a za trest jsi poslán pracovat do dolů.			5										
+24	Boj šípy a lukem	Tygr se k tobě dostal příliš rychle, zraní tě, ale podařilo se ti utéct. Kde přečkáš noc?		V jeskyni.	6	Na stromě.	4								
+25	Úspěch lěčby	Pán se udravil, a rozhodl se ti poděkovat za tvojí pomoc tím že...		...tě propustil z otroctví.	28										
+26	Úspěch boje	Tygra si úspešně zabil		Jdeš pokračovat v práci	4										
+27	???	Cos čekal?		Umřel si	1										
+28	Jsi chudý, ale nejsi otrokem.	Tvůj život není zcela jednoduchý, ale nemáš si na co stěžovat.	Rozhodni se, jak této situace využiješ.	Budeš žít Minecraft dream life.	63	Vstoupíš do armády.	47								
+29	Bereš peníze a jedeš domů	Plavíš se na lodi s pokladem v lehké paranoie, abys o své jmění nepřišel, ale už se těšíš na svůj život snů.	Hoď kostkou, abys zjistil/a, zda plavba proběhla hladce.	Dojedeš bezpečně zpátky do Egypta a vykoupíš se z otroctví. (1, 2)	30	Tvou loď přepadnou piráti, nejspíše mají skvělý čich na poklady. (3, 4)	31	Jsi nemotora a povedlo se ti nějakým způsobem do moře vysypat polovinu truhly. (5, 6)	28						
+30	Jsi boháč	Máš hrozně moc peněz, co s nimi uděláš?		Investuješ do dolování	31	Investuješ do dřevorubectví	33	Postavíš chrám	52						
+31	Komplikace 	Věci nejdou podle plánu.		Investuješ dál	32	Necháš toho	30								
+32	Závaly	Ve tvých dolech až moc často dochází k závalům.		Nic si nevydělal a zchudnul si.	28										
+33	Nestačí ti finance	Jde o velice nákladnou investici a finančně si nevystačíš.	Musíš se rozhodnout, co teď.	Raději se rovnou rozhodneš pro bankrot.	28	Vydáš se hledat pomoc.	37								
+34	Vyjedáváš s domorodci	Slíbíš jim....		Zlato	35	Dřevo	36								
+35	Je to lež	Slíbíš jim zlato, ale místo toho jdeš získat dřevo.		Vrátíš se s ním k domorodcům	27	Vydáš se domů	20								
+36	Je to pravda, ale...	... oni žijí v pralese a dřevo fakt nepotřebují.		Snědli tě.	1										
+37	Nikoho si nesehnal			Bankrotuješ	2	Hledáš dál	39								
+38	Vyjednáváš		Hoď si kostkou.	Vyšlo ti to (1,3,5)	28	Unesli tě mafiání (2,4,6)	40								
+39	Zkouška trpělivosti	Čekáš na druhého boháče který by investoval s tebou.		Našel jsi a spolu jdete dál	41	Nedočkal jsi se a umíraš chudý	1								
+40	Jak reaguješ při únosu?			Zkoušíš vyjednávat	11	Voláš o pomoc	46								
+41	Přátelství	Super jste dva!		Investujete spolu.	43										
+42	Gratuluji.	Vyhrál jsi jako otrok.													
+43	Máte neshody	I ti nejlepší obchodní partneři se občas neshodnou. Jak se situace vyvine?	Hoď pro odpověď kostkou.	Nedá se nic dělat, rozpadnete se, rozdíly v názorech byly moc velké. (1, 3, 5)	44	Vaše pouto je silnější, než se zdálo a krizi zvládnete. (2, 4, 6)	45								
+44	Rozchod...	Bohužel jste to spolu nezvládli.	Dejte si kámen nůžky.	Jdeš hledat dál (výhra)	39	Stáváš se chudým (prohra)	28								
+45	Zdaření	Podařilo se vám sehnat materiál		Juchů	54										
+46	POMOC!!!!!!!!!	Našla tě policie a mafiány zatkla.		Jdi na:	42										
+47	Jsi vojákem	Co uděláš?		Vymyslíš si strategii	48	Naběhneš tam	49	Odmítneš	51						
+48	Vymýšlení strategie	...ti trvalo příliš dlouho		Zabili tě.	1										
+49	Dobrá volba	Vítězíš v boji a získal jsi cihly. Na cestě domů:		Se stavíš v hospodě.	50	Prodáš cihly.	53	Nic neuděláš.	56						
+50	Okradli tě.	Tvou jedinou volbu je přiznání. Vláda:	Hoď kostkou.	tě pošle do otroctví (1,2,5)	2	Odpustí ti, ale musíš dobt nová území a získat suroviny (3,4,6)	60								
+51	Neuposlech jsi	Jsi zbaven titulu.		Jsi prodán do otroctví	2										
+52	Chrám	Komu postavíš chrám?		Bohyni Anat	57	Sobě	58	Ježíši Kristu	59						
+53	Kupec	Chce s tebou navázat dlouhodobější spolupráci.		Přijmeš?	30	Odmítneš	56								
+54	Gratuluji...	Vyhrál jsi jako boháč													
+55	Šéfe, mně se asi něco nepove...	Vybouchl jsi.													
+56	Dopravil jsi cihly	Odevzdáš je vládě. Pošlou tě na další misi.		Poslechneš	60	Odmítneš	51								
+57	Bohyně Války	Postavil jsi chrám bohyni války takže...		Musíš do války	47										
+58	Pýcha předchází pád	Nikdo ti nepomohl a chrám byl nakonec moc drahý...		Bankrotuješ 	2										
+59	Ježíš Kristus	Ježíše Krista v tuto dobu nikdo nezná, a tak tě lidi vnímají jako blázna...		Projistotu tě popraví	1										
+60	Dobývání	Vydááš se dobýt nová území pro suroviny, Kam míříš?		Do Indie	61	Do Evropy	62	Na Antarktidu	27						
+61	Velký Objev	Záhadně si objeil Amerika, co tam?		Pokusíš se vyrobit střelné zbraně	55	Postavíš Burger King	64	Uvaříš si čaj	65						
+62	Nejsou tu žádné suroviny	V Evropě už nic nezbylo, neblázni. Za tvé stupidní selhání z tebe v Egyptě udělají otroka.	Vrať se na číslo 2.												
+63	Postavil/a jsi dům	Žiješ spokojený a poklidný život a máš už i kde bydlet. Aby ses nenudil, chceš udělat něco dalšího.	Vyber si, co.	Svůj dům rozšíříš na farmu.	69	Rozhodneš se těžit dřevo.	66	Rozhodneš se těžit kámen.	67						
+64	Vyděláš velký prachy	Podobný nápad ještě nikdo ve starověkém světě neměl. Dobrá práce. S tučným výdělkem se spokojeně vracíš do Egypta.			54										
+65	Auvajz	Nechápeš koncept horké vody. Spálil ses, Amerika fujky.		Vrátíš se se surovinami do Egypta	68										
+66	Spadl na tebe strom	Moc mě to mrzí, ale nebyla to dobrá volba a nepřežil/a jsi pád stromu.			1										
+67	Jsi dole v dole	Bohužel sis zapomněl jakékoli zásoby jídla a pití, takže umíráš.			1										
+68	Gratuluji..	Vyhráváš jako voják.													
+69	Máš jídlo a pití	Dobrá práce, díky tvrdé práci se ti podařilo obstarat mnoho jídla a pití, ale už zase se nudíš.	Co uděláš dál?			Rozhodneš se těžit dřevo.	66	Jdeš těžit kámen.	70						
+70	Kutání	Trochu kamene si nakutal, ale najednou se začneš bát...		Strach není nic pro tebe, jdeš dál	6	Raději jdeš pryč	71								
+71	Gratuluji....	Vyhrál si jako chudý.													
