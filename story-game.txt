@@ -1,0 +1,5 @@
+Číslo	Název kartičky	Text	Instrukce	Možnost A	Číslo A	Možnost B	Číslo B	Možnost C	Číslo C	Možnost D	Číslo D	Možnost E	Číslo E	Monost F	Číslo F
+1	Porodnice	Narodil ses...	Hod' kostkou	...jako otrok (1,2,3)	2	...jako boháč (4)	30	...jako voják (5,6)	47						
+2	Jsi otrok	Byl jsi určen k...	Hod' kostkou	...hledání dřeva (1,4)	3	...dolování kamene (2,5)	5	...jdeš do bohatého domu (3,6)	7						
+3	Lod'	Jsi na lodi na cestě do pralesa. Ale lodní doprava chvíli trvá.		Počkej 2 minuty	4										
+4	Prales	Na lodi ses dostal do pralesa, co teď?	Tvůj osud ovlivní hod kostkou.	Úspěšně získáš dřevo, jedeš zpátky. (1)	18	Potkáváš tygra a musíš se rozhodnout, jakým způsobem se budeš snažit ochránit.									
