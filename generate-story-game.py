@@ -27,9 +27,11 @@ with open(input_file, "r", encoding="utf-8") as f:
 
 
 def shuffle_numbers(size, turn_on):
-    array = np.arange(1, size + 1)
+    array = np.arange(2, size+1)
     if turn_on:
         np.random.shuffle(array)
+    # Set first number as a fixed one
+    array = np.insert(array, 0, 1)
     return array
 
 
