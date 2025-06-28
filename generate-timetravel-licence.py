@@ -80,10 +80,16 @@ def generate_tickets_data(path):
         lines = f.readlines()
         for line in lines:
             name, id = line.split(";")
+            if int(id) > 170000:
+                inicials = name.split()
+                name = f"{inicials[0][0]}.{inicials[1][0]}."
+                code = f"{name} {id}"
+            else:
+                code = f"{id}"
             gate = get_gate_num()
             random = get_qr_data()
             tickets.append({
-                "passenger_name": unidecode(id.replace("\n", "")).upper(),
+                "passenger_name": unidecode(code.replace("\n", "")).upper(),
                 "flight_number": "KF927",
                 "departure": "Jedlová (JFR)",
                 "destination": "Ulambatar (UBN)",
