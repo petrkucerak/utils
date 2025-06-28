@@ -90,7 +90,8 @@ def generate_tickets_data(path):
             gate = get_gate_num()
             random = get_qr_data()
             baseString = f"{name} {id}"
-            baseIn = base64.b64encode(baseString.encode()).decode()
+            baseIn = base64.b64encode(
+                baseString.encode('utf-8')).decode('ascii')
             tickets.append({
                 "passenger_name": unidecode(code.replace("\n", "")).upper(),
                 "flight_number": "KF927",
