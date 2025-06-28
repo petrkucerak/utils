@@ -6,6 +6,7 @@ from reportlab.lib.utils import ImageReader
 import io
 import random
 from unidecode import unidecode
+import base64
 
 
 def generate_qr_code(data):
@@ -88,6 +89,8 @@ def generate_tickets_data(path):
                 code = f"{id}"
             gate = get_gate_num()
             random = get_qr_data()
+            baseString = f"{name} {id}"
+            baseIn = base64.b64encode(baseString.encode()).decode()
             tickets.append({
                 "passenger_name": unidecode(code.replace("\n", "")).upper(),
                 "flight_number": "KF927",
@@ -96,7 +99,7 @@ def generate_tickets_data(path):
                 "date": "2024-06-29",
                 "boarding_time": "19:30 PM",
                 "gate": gate,
-                "qr_data": f"{random} | {name} | {id}"
+                "qr_data": f"{random} | {baseIn}"
             })
     return tickets
 

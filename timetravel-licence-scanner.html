@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QR Code Scanner</title>
+    <title>Timetravel ID Scanner</title>
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
     <style>
       body {
@@ -17,8 +17,8 @@
         position: relative;
       }
       #video {
-        width: 100%;
-        max-width: 500px;
+        width: 90vw;
+        max-width: 1000px;
         border: 1px solid #ccc;
       }
       #output {
@@ -28,12 +28,6 @@
         min-height: 50px;
         width: 300px;
         word-wrap: break-word;
-      }
-      #capturedCodes {
-        margin-top: 20px;
-        width: 300px;
-        padding: 10px;
-        border: 1px solid #ccc;
       }
       #resetButton {
         margin-top: 10px;
@@ -50,21 +44,16 @@
     </style>
   </head>
   <body>
-    <h1>QR Code Scanner</h1>
+    <h1>Timetravel ID Scanner</h1>
     <div id="videoContainer">
       <video id="video" autoplay playsinline></video>
     </div>
     <div id="output">Point your camera at a QR code</div>
     <button id="resetButton">Reset and Scan New QR Code</button>
-    <div id="capturedCodes">
-      <h3>Captured QR Codes:</h3>
-      <ul id="codeList"></ul>
-    </div>
 
     <script>
       const video = document.getElementById("video");
       const output = document.getElementById("output");
-      const codeList = document.getElementById("codeList");
       const resetButton = document.getElementById("resetButton");
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
@@ -90,31 +79,35 @@
         }
       }
 
+      function parseQRData(base64Data) {
+        const parts = base64Data.split(" | ");
+        // Decode Base64
+        const decodedData = atob(parts[1]);
+        // Expected format: "random | [name;id]"
+        //  if (parts.length !== 2) throw new Error("Invalid QR code format");
+        //  const innerData = parts[1].match(/\[([^;]+);([^\]]+)\]/);
+        //  if (!innerData) throw new Error("Invalid data structure");
+        return { name: parts[0], id: decodedData };
+      }
+
       function scanQRCode() {
         if (!isScanning) return;
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
           const code = jsQR(imageData.data, imageData.width, imageData.height);
-          if (code && !capturedCodes.includes(code.data)) {
-            capturedCodes.push(code.data);
-            output.textContent = code.data;
-            updateCodeList();
+          if (code) {
+            // capturedCodes.push(code.data);
+            const parsed = parseQRData(code.data);
+
+            output.textContent = `${parsed.id}`;
+
             isScanning = false; // Stop scanning after capturing a code
           } else {
-            output.textContent = code ? code.data : "No QR code detected";
+            output.textContent = "No QR code detected";
           }
         }
         requestAnimationFrame(scanQRCode);
-      }
-
-      function updateCodeList() {
-        codeList.innerHTML = "";
-        capturedCodes.forEach((code, index) => {
-          const li = document.createElement("li");
-          li.textContent = `${index + 1}. ${code}`;
-          codeList.appendChild(li);
-        });
       }
 
       resetButton.addEventListener("click", () => {
