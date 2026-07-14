@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Dekódování</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    font-family: -apple-system, system-ui, sans-serif;
+    overflow: hidden;
+    overscroll-behavior: none;
+    user-select: none;
+  }
+
+  #app {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hidden { display: none !important; }
+
+  #codeInput {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-size: clamp(1.1rem, 3vw, 2rem);
+    text-align: center;
+    padding: 0.6rem 1rem;
+    width: min(85vw, 640px);
+    outline: none;
+    letter-spacing: 0.04em;
+    caret-color: #0f0;
+    user-select: text;
+  }
+
+  #codeInput:focus { border-bottom-color: #0f0; }
+
+  #codeInput.shake { animation: shake 0.5s ease; }
+
+  @keyframes shake {
+    10%, 90% { transform: translateX(-3px); }
+    20%, 80% { transform: translateX(5px); }
+    30%, 50%, 70% { transform: translateX(-8px); }
+    40%, 60% { transform: translateX(8px); }
+  }
+
+  #coords {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(1.6rem, 6vw, 4.5rem);
+    color: #00ff6a;
+    text-shadow: 0 0 30px rgba(0, 255, 106, 0.6);
+    text-align: center;
+    letter-spacing: 0.02em;
+    user-select: text;
+    animation: fadeInScale 0.8s ease;
+  }
+
+  @keyframes fadeInScale {
+    0% { opacity: 0; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  #flashOverlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    font-size: clamp(4rem, 18vw, 11rem);
+    opacity: 0;
+    z-index: 50;
+  }
+
+  #flashOverlay.success { color: #00ff6a; text-shadow: 0 0 50px #00ff6a; }
+  #flashOverlay.fail { color: #ff3b3b; text-shadow: 0 0 50px #ff3b3b; }
+
+  #flashOverlay.show.success { animation: flashPop 0.9s ease forwards, bgGreen 0.9s ease forwards; }
+  #flashOverlay.show.fail { animation: flashPop 0.9s ease forwards, bgRed 0.9s ease forwards; }
+
+  @keyframes flashPop {
+    0% { transform: scale(0.4); opacity: 0; }
+    35% { transform: scale(1.2); opacity: 1; }
+    55% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0; }
+  }
+
+  @keyframes bgGreen {
+    0% { background: rgba(0, 255, 106, 0); }
+    40% { background: rgba(0, 255, 106, 0.15); }
+    100% { background: rgba(0, 255, 106, 0); }
+  }
+
+  @keyframes bgRed {
+    0% { background: rgba(255, 59, 59, 0); }
+    40% { background: rgba(255, 59, 59, 0.15); }
+    100% { background: rgba(255, 59, 59, 0); }
+  }
+
+  footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 18px calc(10px + env(safe-area-inset-bottom));
+    font-size: 0.75rem;
+  }
+
+  #failCount {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    color: #eee;
+  }
+
+  #failCount .fail-icon {
+    color: #ff3b3b;
+    font-weight: bold;
+  }
+
+  #resetBtn {
+    background: none;
+    border: none;
+    color: #888;
+    font: inherit;
+    padding: 4px 6px;
+    cursor: pointer;
+    opacity: 0.6;
+  }
+
+  #resetBtn:hover, #resetBtn:active { opacity: 1; color: #fff; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div id="screenInput" class="screen">
+    <input id="codeInput" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false">
+  </div>
+
+  <div id="screenSuccess" class="screen hidden">
+    <div id="coords"></div>
+  </div>
+</div>
+
+<div id="flashOverlay"></div>
+
+<footer>
+  <span id="failCount"><span class="fail-icon">✗</span><span id="failNum">0</span></span>
+  <button id="resetBtn" type="button">reset</button>
+</footer>
+
+<script>
+(function () {
+  // ================= NASTAVENÍ (upravte podle potřeby) =================
+  var SECRET_CODE = "WlakkOndor4youOlamaNinja4nedklikKamenacioSmZnAkUliDlasmAm7kApiTan";
+  var TREASURE_COORDS = "49.6803636N, 16.3455242E";
+  // ========================================================================
+
+  var STORAGE_FAIL = 'decodeFailCount';
+  var STORAGE_SOLVED = 'decodeSolved';
+
+  var screenInput = document.getElementById('screenInput');
+  var screenSuccess = document.getElementById('screenSuccess');
+  var input = document.getElementById('codeInput');
+  var flashOverlay = document.getElementById('flashOverlay');
+  var failNumEl = document.getElementById('failNum');
+  var resetBtn = document.getElementById('resetBtn');
+  var coordsEl = document.getElementById('coords');
+
+  var audioCtx = null;
+  function getAudioCtx() {
+    if (!audioCtx) {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new Ctx();
+    }
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    return audioCtx;
+  }
+
+  function tone(ctx, freq, start, dur, type, peak) {
+    var osc = ctx.createOscillator();
+    var gain = ctx.createGain();
+    osc.type = type || 'sine';
+    osc.frequency.value = freq;
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.exponentialRampToValueAtTime(peak || 0.2, start + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+    osc.start(start);
+    osc.stop(start + dur + 0.05);
+  }
+
+  function playSuccessSound() {
+    var ctx = getAudioCtx();
+    var t = ctx.currentTime;
+    tone(ctx, 523.25, t, 0.16, 'sine', 0.25);
+    tone(ctx, 659.25, t + 0.14, 0.16, 'sine', 0.25);
+    tone(ctx, 783.99, t + 0.28, 0.4, 'sine', 0.25);
+  }
+
+  function playFailSound() {
+    var ctx = getAudioCtx();
+    var t = ctx.currentTime;
+    tone(ctx, 200, t, 0.22, 'square', 0.15);
+    tone(ctx, 150, t + 0.18, 0.3, 'square', 0.15);
+  }
+
+  function getFailCount() {
+    return parseInt(localStorage.getItem(STORAGE_FAIL) || '0', 10);
+  }
+
+  function setFailCount(n) {
+    localStorage.setItem(STORAGE_FAIL, String(n));
+    failNumEl.textContent = n;
+  }
+
+  function showFlash(type) {
+    flashOverlay.textContent = type === 'success' ? '✅' : '❌';
+    flashOverlay.classList.remove('success', 'fail', 'show');
+    void flashOverlay.offsetWidth;
+    flashOverlay.classList.add(type);
+    flashOverlay.classList.add('show');
+  }
+
+  function revealSuccess() {
+    localStorage.setItem(STORAGE_SOLVED, 'true');
+    screenInput.classList.add('hidden');
+    screenSuccess.classList.remove('hidden');
+  }
+
+  function handleSuccess() {
+    playSuccessSound();
+    showFlash('success');
+    setTimeout(revealSuccess, 900);
+  }
+
+  function handleFail() {
+    setFailCount(getFailCount() + 1);
+    playFailSound();
+    showFlash('fail');
+    input.classList.remove('shake');
+    void input.offsetWidth;
+    input.classList.add('shake');
+    setTimeout(function () {
+      input.value = '';
+      input.focus();
+    }, 500);
+  }
+
+  function checkCode() {
+    var value = input.value.trim();
+    if (value.length === 0) return;
+    if (value === SECRET_CODE) {
+      handleSuccess();
+    } else {
+      handleFail();
+    }
+  }
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { checkCode(); }
+  });
+
+  input.addEventListener('paste', function () {
+    setTimeout(checkCode, 10);
+  });
+
+  resetBtn.addEventListener('click', function () {
+    localStorage.removeItem(STORAGE_FAIL);
+    localStorage.removeItem(STORAGE_SOLVED);
+    location.reload();
+  });
+
+  // Init
+  coordsEl.textContent = TREASURE_COORDS;
+  setFailCount(getFailCount());
+
+  if (localStorage.getItem(STORAGE_SOLVED) === 'true') {
+    screenInput.classList.add('hidden');
+    screenSuccess.classList.remove('hidden');
+  } else {
+    input.focus();
+  }
+})();
+</script>
+
+</body>
+</html>
